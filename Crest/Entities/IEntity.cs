@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Api.Resources
+namespace Crest.Entities
 {
-    public interface IResource
+    public interface IEntity
     {
         /// <summary>
-        ///     Represents the route of this resource.
+        ///     Represents the ID of this resource.
         /// </summary>
-        public string Route { get; }
+        public ulong Id { get; }
     }
 }

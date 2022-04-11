@@ -8,6 +8,10 @@ namespace Crest
 {
     public class CrestConfiguration
     {
-        public string ApiUrl { get; set; }
+        const string ApiUrl = "";
+
+        const int MaxBansPerRequest = 1000;
+
+        const int MaxMessagesPerRequest = 100;
     }
 }

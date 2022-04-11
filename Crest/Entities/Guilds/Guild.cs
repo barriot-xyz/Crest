@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Api.Resources
+namespace Crest.Entities
 {
-    public class GuildResource : IResource
+    public class Guild : IEntity
     {
-        /// <inheritdoc/>
-        public string Route { get; } = "/guilds/";
+        public ulong Id { get; }
+
+        internal Guild()
+        {
+            Id = 0;
+        }
 
         public async Task DeleteAsync() { }
 
@@ -25,6 +29,11 @@ namespace Crest.Api.Resources
 
         public async Task GetMembersAsync(Predicate<string>? nameFilter = null) { }
 
-        public async Task AddMemberAsync()
+        public async Task AddMemberAsync() { }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
