@@ -1,27 +1,14 @@
 ﻿namespace Crest.Api
 {
-    public class CrestDiscordClient : IDisposable
+    public sealed class CrestDiscordClient
     {
-        internal CrestConfiguration Configuration { get; }
+        private readonly CrestConfiguration _configuration;
+        private readonly HttpClient _httpClient;
 
-        public CrestDiscordClient(CrestConfiguration configuration)
+        public CrestDiscordClient(HttpClient httpClient, CrestConfiguration configuration)
         {
-            Configuration = configuration;
-        }
-
-        public async Task LoginAsync(string token)
-        {
-
-        }
-
-        public async Task LogoutAsync()
-        {
-
-        }
-
-        async void IDisposable.Dispose()
-        {
-            await LogoutAsync();
+            _configuration = configuration;
+            _httpClient = httpClient;
         }
     }
 }

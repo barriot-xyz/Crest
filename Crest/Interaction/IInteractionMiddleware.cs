@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Api
+namespace Crest.Interaction
 {
-    internal class CrestClientHelper
+    public interface IInteractionMiddleware
     {
+
     }
 }

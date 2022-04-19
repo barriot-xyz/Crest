@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Entities
+namespace Crest
 {
-    [Flags]
-    public enum EntityFlags
+    public enum AuthorizationType
     {
-        None,
+        Bearer,
 
-        FromGuild,
+        Bot
     }
 }
