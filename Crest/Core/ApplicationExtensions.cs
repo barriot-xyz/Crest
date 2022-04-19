@@ -1,14 +1,8 @@
 ﻿using Crest.Api;
-using Crest.Interaction;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Crest
+namespace Crest.Core
 {
     public static class ApplicationExtensions
     {
@@ -29,7 +23,7 @@ namespace Crest
                     AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
                     UseCookies = false,
                     UseProxy = configuration.UseProxy,
-                }); 
+                });
             return services;
         }
     }
