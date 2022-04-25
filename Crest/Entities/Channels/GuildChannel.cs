@@ -1,16 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Model = Crest.Api.Json.ChannelModel;
 
 namespace Crest.Entities
 {
     public record GuildChannel : Channel
     {
-        public GuildChannel() : base()
+        internal GuildChannel(Model model) : base(model)
         {
             
         }
+
+        public static bool TryParse(string json, out GuildChannel entity)
+        {
+            var model = JsonConvert.DeserializeObject<Model>(json);
+
+            if (model is not null)
+            {
+                entity = new(model);
+                return true;
+            }
+            else
+            {
+                entity = null!;
+                return false;
+            }
+        }
+
+        public override string ToString()
+            => $"<#{Id}>";
     }
 }

@@ -1,4 +1,4 @@
-﻿using Crest.Core;
+﻿using Model = Crest.Api.Json.UserModel;
 
 namespace Crest.Entities
 {
@@ -10,16 +10,28 @@ namespace Crest.Entities
 
         public string GuildAvatarId { get; }
 
-        public Color AccentColor { get; }
-
-        public GuildMember() : base()
+        internal GuildMember(Model model) : base(model)
         {
+            
+        }
 
+        public static bool TryParse(string json, out GuildMember entity)
+        {
+            var model = JsonConvert.DeserializeObject<Model>(json);
+
+            if (model is not null)
+            {
+                entity = new(model);
+                return true;
+            }
+            else
+            {
+                entity = null!;
+                return false;
+            }
         }
 
         public override string ToString()
-        {
-            return base.ToString();
-        }
+            => $"<@{Id}>";
     }
 }

@@ -17,26 +17,28 @@ namespace Crest.Entities
 
         public Color AccentColor { get; }
 
-        private User(Model model)
+        internal User(Model model)
         {
             Id = model.Id;
         }
 
-        public static async Task<User?> PopulateAsync(Stream stream)
+        public static bool TryParse(string json, out User entity)
         {
-            if (stream is not null)
-            {
-                using var reader = new StreamReader(stream);
-                var result = await reader.ReadToEndAsync();
+            var model = JsonConvert.DeserializeObject<Model>(json);
 
-                return new(JsonConvert.DeserializeObject<Model>(result)!);
+            if (model is not null)
+            {
+                entity = new(model);
+                return true;
             }
-            return null;
+            else
+            {
+                entity = null!;
+                return false;
+            }
         }
 
         public override string ToString()
-        {
-            return base.ToString();
-        }
+            => $"<@{Id}>";
     }
 }

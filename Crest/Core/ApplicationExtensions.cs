@@ -1,4 +1,5 @@
 ﻿using Crest.Api;
+using Crest.Entities.Guilds;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 
@@ -24,6 +25,7 @@ namespace Crest.Core
                     UseCookies = false,
                     UseProxy = configuration.UseProxy,
                 });
+            services.AddSingleton<GuildHelper>();
             return services;
         }
     }

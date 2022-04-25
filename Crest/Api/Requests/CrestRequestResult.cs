@@ -21,5 +21,16 @@ namespace Crest.Api.Requests
             StatusCode = statusCode;
             Body = body;
         }
+
+        public async Task<string> GetJsonAsync()
+        {
+            if (Body is not null)
+            {
+                using var reader = new StreamReader(Body);
+                var json = await reader.ReadToEndAsync();
+                return json;
+            }
+            else return string.Empty;
+        }
     }
 }
