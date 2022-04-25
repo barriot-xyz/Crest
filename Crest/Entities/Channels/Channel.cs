@@ -1,7 +1,14 @@
 ﻿namespace Crest.Entities
 {
-    public class Channel : IEntity
+    public record Channel : IEntity<ulong>
     {
+        public ulong Id { get; }
+
         public string Name { get; }
+
+        public Channel()
+        {
+
+        }
     }
 }

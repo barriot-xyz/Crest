@@ -1,6 +1,6 @@
 ﻿namespace Crest.Entities
 {
-    public class Guild : IEntity
+    public record Guild : IEntity<ulong>
     {
         public ulong Id { get; }
 
@@ -9,21 +9,21 @@
             Id = 0;
         }
 
-        public async Task DeleteAsync() { }
+        public async Task<bool> DeleteAsync() { }
 
-        public async Task GetChannelsAsync() { }
+        public async Task<IAsyncEnumerable<GuildChannel>> GetChannelsAsync() { }
 
-        public async Task CreateChannelAsync() { }
+        public async Task<GuildChannel> CreateChannelAsync() { }
 
         public async Task ModifyChannelPositions() { }
 
-        public async Task GetThreadsAsync() { }
+        public async Task<Thread> GetThreadsAsync() { }
 
-        public async Task GetMemberAsync(ulong snowflake) { }
+        public async Task<GuildMember> GetMemberAsync(ulong id) { }
 
-        public async Task GetMembersAsync(Predicate<string>? nameFilter = null) { }
+        public async Task<IAsyncEnumerable<GuildMember>> GetMembersAsync(Predicate<string>? nameFilter = null) { }
 
-        public async Task AddMemberAsync() { }
+        public async Task<bool> AddMemberAsync() { }
 
         public void Dispose()
         {

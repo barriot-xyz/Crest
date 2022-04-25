@@ -12,6 +12,9 @@
             _hexValue = null!;
         }
 
+        public static implicit operator Color(string hex)
+            => GetFromHex(hex);
+
         public static Color GetFromHex(string hex)
             => new(Convert.ToUInt32(hex, 16));
 

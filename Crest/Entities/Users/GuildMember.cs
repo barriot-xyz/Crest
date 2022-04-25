@@ -1,6 +1,8 @@
-﻿namespace Crest.Entities
+﻿using Crest.Core;
+
+namespace Crest.Entities
 {
-    public record GuildUserEntity : UserEntity
+    public record GuildMember : User
     {
         public string Nickname { get; }
 
@@ -10,7 +12,7 @@
 
         public Color AccentColor { get; }
 
-        public GuildUserEntity()
+        public GuildMember() : base()
         {
 
         }

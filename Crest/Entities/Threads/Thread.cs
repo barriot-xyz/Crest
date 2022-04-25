@@ -1,7 +1,12 @@
 ﻿namespace Crest.Entities
 {
-    public class Thread : IEntity
+    public record Thread : IEntity<ulong>
     {
+        public Thread()
+        {
 
+        }
+
+        public ulong Id { get; }
     }
 }

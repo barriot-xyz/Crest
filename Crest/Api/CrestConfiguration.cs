@@ -1,4 +1,6 @@
-﻿namespace Crest
+﻿using Crest.Core;
+
+namespace Crest
 {
     public class CrestConfiguration
     {
