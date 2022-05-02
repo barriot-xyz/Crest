@@ -4,6 +4,10 @@ namespace Crest.Entities
 {
     public record GuildMember : User
     {
+        public ulong GuildId { get; }
+
+        public Guild? Guild { get; }
+
         public string? Nickname { get; }
 
         public string? GuildAvatarId { get; }
@@ -22,8 +26,16 @@ namespace Crest.Entities
 
         public ulong[] RoleIds { get; } = Array.Empty<ulong>();
 
-        internal GuildMember(Model model) : base(model.User)
+        internal GuildMember(Model model, Guild? guild, ulong guildId = 0) : base(model.User)
         {
+            if (guild is null && guildId is 0)
+                throw new InvalidOperationException();
+
+            else if (guild is not null)
+                Guild = guild;
+
+            GuildId = guildId;
+
             if (model.Nickname.IsSpecified)
                 Nickname = model.Nickname.Value;
 
@@ -52,16 +64,16 @@ namespace Crest.Entities
                 BoostingSince = model.PremiumSince.Value;
         }
 
-        internal static GuildMember Create(Model model)
-            => new(model);
+        internal static GuildMember Create(Model model, Guild? guild)
+            => new(model, guild);
 
-        internal static bool TryParse(string json, out GuildMember entity)
+        internal static bool TryParse(string json, Guild? guild, out GuildMember entity)
         {
             var model = JsonConvert.DeserializeObject<Model>(json);
 
             if (model is not null)
             {
-                entity = new(model);
+                entity = new(model, guild);
                 return true;
             }
             else

@@ -24,35 +24,56 @@ namespace Crest.Api
             if (User.TryParse(await result.GetJsonAsync(), out var user))
                 return user;
             else
-                throw new ArgumentNullException(nameof(user));
+                throw new InvalidOperationException();
         }
 
-        public async Task<GuildMember> GetGuildMemberAsync(ulong guildId, ulong Id)
-        {
-            var result = await _httpManager.SendAsync(new(HttpMethod.Get, $"guilds/{guildId}/members/{Id}"));
+        public async Task<GuildMember> GetGuildMemberAsync(ulong guildId, ulong id)
+            => await GetGuildMemberInternalAsync(null, id, guildId);
 
-            if (GuildMember.TryParse(await result.GetJsonAsync(), out var member))
+        internal async Task<GuildMember> GetGuildMemberInternalAsync(Guild? guild, ulong id, ulong guildId = 0)
+        {
+            if (guild is not null)
+                guildId = guild.Id;
+
+            if (guildId is 0)
+                throw new InvalidOperationException();
+
+            var result = await GetMemberModelAsync(guildId, id);
+
+            if (GuildMember.TryParse(await result.GetJsonAsync(), guild, out var member))
                 return member;
             else
-                throw new ArgumentNullException(nameof(member));
+                throw new InvalidOperationException();
         }
 
-        public async IAsyncEnumerable<GuildMember> GetGuildMembersAsync(ulong guildId)
+        private async Task<CrestRequestResult> GetMemberModelAsync(ulong guildId, ulong id)
+            => await _httpManager.SendAsync(new(HttpMethod.Get, $"guilds/{guildId}/members/{id}"));
+
+        public IAsyncEnumerable<GuildMember> GetGuildmembersAsync(ulong guildId)
+            => GetGuildMembersInternalAsync(null, guildId);
+
+        internal async IAsyncEnumerable<GuildMember> GetGuildMembersInternalAsync(Guild? guild, ulong guildId = 0)
         {
+            if (guild is not null)
+                guildId = guild.Id;
+
+            if (guildId is 0)
+                throw new InvalidOperationException();
+
             var result = await _httpManager.SendAsync(new(HttpMethod.Get, $"guilds/{guildId}/members"));
 
             var json = await result.GetJsonAsync();
             var models = JsonConvert.DeserializeObject<IEnumerable<GuildMember>>(json);
 
             if (models is null)
-                throw new ArgumentNullException(nameof(models));
+                throw new InvalidOperationException();
 
             foreach(var model in models)
             {
-                if (GuildMember.TryParse(await result.GetJsonAsync(), out var member))
+                if (GuildMember.TryParse(await result.GetJsonAsync(), guild, out var member))
                     yield return member;
                 else
-                    throw new ArgumentNullException(nameof(member));
+                    throw new InvalidOperationException();
             }
         }
 

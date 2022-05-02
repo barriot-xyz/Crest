@@ -49,7 +49,7 @@ namespace Crest.Entities
             => throw new NotImplementedException();
 
         public async Task<GuildMember> GetMemberAsync(ulong id)
-            => await _client.GetGuildMemberAsync(Id, id);
+            => await _client.GetGuildMemberInternalAsync(this, id);
 
         public async IAsyncEnumerable<GuildMember> GetMembersAsync()
             => _client.GetGuildMembersAsync(Id);
