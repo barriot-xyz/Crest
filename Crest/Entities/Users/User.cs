@@ -1,10 +1,14 @@
-﻿using Crest.Entities.Users.Properties;
+﻿using Crest.Api;
+using Crest.Api.Endpoints;
+using Crest.Entities.Users.Properties;
 using Model = Crest.Entities.Users.Models.UserModel;
 
 namespace Crest.Entities
 {
     public record User : IEntity<ulong>
     {
+        protected readonly UserEndpoint _client;
+
         public ulong Id { get; }
 
         public string? Username { get; }
@@ -23,8 +27,10 @@ namespace Crest.Entities
 
         public bool IsBot { get; }
 
-        internal User(Model model)
+        internal User(Model model, UserEndpoint client)
         {
+            _client = client;
+
             Id = model.Id;
 
             if (model.Bot.IsSpecified)
@@ -52,16 +58,13 @@ namespace Crest.Entities
                 Locale = model.Locale.Value;
         }
 
-        internal static User Create(Model model)
-            => new(model);
-
-        internal static bool TryParse(string json, out User entity)
+        internal static bool TryParse(UserEndpoint client, string json, out User entity)
         {
             var model = JsonConvert.DeserializeObject<Model>(json);
 
             if (model is not null)
             {
-                entity = new(model);
+                entity = new(model, client);
                 return true;
             }
             else

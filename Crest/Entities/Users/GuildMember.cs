@@ -1,4 +1,5 @@
-﻿using Model = Crest.Entities.Users.Models.GuildMemberModel;
+﻿using Crest.Api.Endpoints;
+using Model = Crest.Entities.Users.Models.GuildMemberModel;
 
 namespace Crest.Entities
 {
@@ -26,7 +27,7 @@ namespace Crest.Entities
 
         public ulong[] RoleIds { get; } = Array.Empty<ulong>();
 
-        internal GuildMember(Model model, Guild? guild, ulong guildId = 0) : base(model.User)
+        internal GuildMember(Model model, Guild? guild, ulong guildId, UserEndpoint client) : base(model.User, client)
         {
             if (guild is null && guildId is 0)
                 throw new InvalidOperationException();
@@ -64,16 +65,13 @@ namespace Crest.Entities
                 BoostingSince = model.PremiumSince.Value;
         }
 
-        internal static GuildMember Create(Model model, Guild? guild)
-            => new(model, guild);
-
-        internal static bool TryParse(string json, Guild? guild, out GuildMember entity)
+        internal static bool TryParse(UserEndpoint client, string json, Guild? guild, ulong guildId, out GuildMember entity)
         {
             var model = JsonConvert.DeserializeObject<Model>(json);
 
             if (model is not null)
             {
-                entity = new(model, guild);
+                entity = new(model, guild, guildId, client);
                 return true;
             }
             else

@@ -1,23 +1,26 @@
 ﻿using Crest.Api;
+using Crest.Api.Endpoints;
 using Model = Crest.Entities.Guilds.Models.GuildModel;
 
 namespace Crest.Entities
 {
     public record Guild : IEntity<ulong>
     {
-        private readonly CrestDiscordClient _client;
+        private readonly GuildEndpoint _client;
 
         public ulong Id { get; }
 
-        public string Name { get; }
+        public string? Name { get; }
 
-        internal Guild(Model model, CrestDiscordClient client)
+        internal Guild(Model model, GuildEndpoint client)
         {
+            _client = client;
+
             Id = model.Id;
             Name = model.Name;
         }
 
-        public static bool TryParse(CrestDiscordClient client, string json, out Guild entity)
+        public static bool TryParse(GuildEndpoint client, string json, out Guild entity)
         {
             var model = JsonConvert.DeserializeObject<Model>(json);
 
@@ -49,13 +52,13 @@ namespace Crest.Entities
             => throw new NotImplementedException();
 
         public async Task<GuildMember> GetMemberAsync(ulong id)
-            => await _client.GetGuildMemberInternalAsync(this, id);
+            => await _client.GetMemberInternalAsync(this, Id, id);
 
-        public async IAsyncEnumerable<GuildMember> GetMembersAsync()
-            => _client.GetGuildMembersAsync(Id);
+        public IAsyncEnumerable<GuildMember> GetMembersAsync()
+            => _client.GetMembersInternalAsync(this, Id);
 
-        public async IAsyncEnumerable<GuildMember> GetMembersAsync(Predicate<string>? nameFilter = null)
-            => _client.GetGuildMembersAsync(Id, nameFilter);
+        public IAsyncEnumerable<GuildMember> GetMembersAsync(Predicate<string>? nameFilter = null)
+            => _client.GetMembersInternalAsync(this, Id/*, nameFilter */);
 
         public override string ToString()
             => Name;

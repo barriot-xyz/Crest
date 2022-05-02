@@ -1,4 +1,5 @@
-﻿using Crest.Entities.Users.Properties;
+﻿using Crest.Api.Endpoints;
+using Crest.Entities.Users.Properties;
 using Model = Crest.Entities.Users.Models.UserModel;
 
 namespace Crest.Entities
@@ -13,7 +14,7 @@ namespace Crest.Entities
 
         public bool IsVerified { get; }
 
-        internal CurrentUser(Model model) : base(model)
+        internal CurrentUser(Model model, UserEndpoint client) : base(model, client)
         {
             if (model.Flags.IsSpecified)
                 Flags = model.Flags.Value;
@@ -27,8 +28,5 @@ namespace Crest.Entities
             if (model.Verified.IsSpecified)
                 IsVerified = model.Verified.Value;
         }
-
-        internal static CurrentUser Create(Model model)
-            => new(model);
     }
 }
