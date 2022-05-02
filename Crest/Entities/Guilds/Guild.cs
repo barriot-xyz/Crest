@@ -1,6 +1,5 @@
 ﻿using Crest.Api;
-using Crest.Entities.Guilds;
-using Model = Crest.Api.Json.GuildModel;
+using Model = Crest.Entities.Guilds.Models.GuildModel;
 
 namespace Crest.Entities
 {

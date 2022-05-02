@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Api.Json
+namespace Crest.Entities
 {
-    internal class UserModel
+    public class Role
     {
-        [JsonProperty("snowflake")]
-        public ulong Id { get; init; }
     }
 }
