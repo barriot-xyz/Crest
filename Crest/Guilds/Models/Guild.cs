@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Entities.Guilds.Models
+namespace Crest.Guilds.Models
 {
-    internal class GuildModel
+    internal class Guild
     {
         [JsonProperty("id")]
         public ulong Id { get; set; }
@@ -63,10 +63,10 @@ namespace Crest.Entities.Guilds.Models
         public ulong? ApplicationId { get; set; }
 
         [JsonProperty("widget_enabled")]
-        public Optional<bool> WidgetEnabled { get; set; }
+        public bool WidgetEnabled { get; set; }
 
         [JsonProperty("widget_channel_id")]
-        public Optional<ulong?> WidgetChannelId { get; set; }
+        public ulong? WidgetChannelId { get; set; }
 
         [JsonProperty("system_channel_id")]
         public ulong? SystemChannelId { get; set; }
@@ -91,10 +91,10 @@ namespace Crest.Entities.Guilds.Models
         public ulong? RulesChannelId { get; set; }
 
         [JsonProperty("max_presences")]
-        public Optional<int?> MaxPresences { get; set; }
+        public int? MaxPresences { get; set; }
 
         [JsonProperty("max_members")]
-        public Optional<int> MaxMembers { get; set; }
+        public int? MaxMembers { get; set; }
 
         [JsonProperty("premium_subscription_count")]
         public int? PremiumSubscriptionCount { get; set; }
@@ -106,16 +106,16 @@ namespace Crest.Entities.Guilds.Models
         public ulong? PublicUpdatesChannelId { get; set; }
 
         [JsonProperty("max_video_channel_users")]
-        public Optional<int> MaxVideoChannelUsers { get; set; }
+        public int? MaxVideoChannelUsers { get; set; }
 
         [JsonProperty("approximate_member_count")]
-        public Optional<int> ApproximateMemberCount { get; set; }
+        public int? ApproximateMemberCount { get; set; }
 
         [JsonProperty("approximate_presence_count")]
-        public Optional<int> ApproximatePresenceCount { get; set; }
+        public int? ApproximatePresenceCount { get; set; }
 
         [JsonProperty("threads")]
-        public Optional<Channel[]> Threads { get; set; }
+        public Channel[]? Threads { get; set; }
 
         [JsonProperty("nsfw_level")]
         public NsfwLevel NsfwLevel { get; set; }
@@ -124,6 +124,6 @@ namespace Crest.Entities.Guilds.Models
         public Sticker[] Stickers { get; set; }
 
         [JsonProperty("premium_progress_bar_enabled")]
-        public Optional<bool> IsBoostProgressBarEnabled { get; set; }
+        public bool? IsBoostProgressBarEnabled { get; set; }
     }
 }

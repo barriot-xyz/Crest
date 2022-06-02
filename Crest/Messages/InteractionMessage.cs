@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crest.Messages
 {
-    internal class InteractionMessage
+    internal class InteractionMessage : Message
     {
     }
 }

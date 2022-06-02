@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Crest.Emojis
 {
-    public class Emoji
+    public record Emoji : IEntity<ulong>
     {
         public ulong Id { get; set; }
 

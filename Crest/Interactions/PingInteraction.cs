@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    public class MessageCommand : Command
+    public class PingInteraction : Interaction
     {
-        internal MessageCommand(Models.Interaction model, string timestamp) : base(model, timestamp)
+        internal PingInteraction(Models.Interaction model, string timestamp) : base(model, timestamp)
         {
         }
     }

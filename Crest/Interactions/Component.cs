@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    internal class MessageComponent
+    public class Component : Interaction
     {
+        internal Component(Models.Interaction model, string timestamp) : base(model, timestamp)
+        {
+        }
     }
 }

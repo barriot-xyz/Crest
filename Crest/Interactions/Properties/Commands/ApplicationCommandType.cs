@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Interactions.Properties
+namespace Crest.Interactions.Properties.Commands
 {
     /// <summary>
     ///     https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure

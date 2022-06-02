@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    internal class SlashCommand
+    public class SlashCommand : Command
     {
+        internal SlashCommand(Models.Interaction model, string timestamp) : base(model, timestamp)
+        {
+        }
     }
 }

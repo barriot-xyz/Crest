@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    public class MessageCommand : Command
+    public class ModalInteraction : Interaction
     {
-        internal MessageCommand(Models.Interaction model, string timestamp) : base(model, timestamp)
+        internal ModalInteraction(Models.Interaction model, string timestamp) : base(model, timestamp)
         {
         }
     }

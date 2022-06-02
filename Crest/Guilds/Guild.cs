@@ -1,8 +1,7 @@
 ﻿using Crest.Api;
 using Crest.Api.Endpoints;
-using Model = Crest.Entities.Guilds.Models.GuildModel;
 
-namespace Crest.Entities
+namespace Crest.Guilds
 {
     public record Guild : IEntity<ulong>
     {
@@ -12,7 +11,7 @@ namespace Crest.Entities
 
         public string? Name { get; }
 
-        internal Guild(Model model, GuildEndpoint client)
+        internal Guild(Models.Guild model, GuildEndpoint client)
         {
             _client = client;
 
@@ -22,7 +21,7 @@ namespace Crest.Entities
 
         public static bool TryParse(GuildEndpoint client, string json, out Guild entity)
         {
-            var model = JsonConvert.DeserializeObject<Model>(json);
+            var model = JsonConvert.DeserializeObject<Models.Guild>(json);
 
             if (model is not null)
             {

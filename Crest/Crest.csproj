@@ -18,7 +18,7 @@
   <ItemGroup>
     <Folder Include="Messages\Properties\" />
     <Folder Include="Guilds\Properties\" />
-    <Folder Include="Roles\" />
+    <Folder Include="Verification\" />
   </ItemGroup>
 
 </Project>
