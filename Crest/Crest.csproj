@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Guilds\Properties\" />
+    <Folder Include="Messages\Properties\" />
+    <Folder Include="Guilds\Properties\" />
+    <Folder Include="Roles\" />
   </ItemGroup>
 
 </Project>

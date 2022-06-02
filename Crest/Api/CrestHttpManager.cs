@@ -32,7 +32,7 @@ namespace Crest.Api
             var headers = value.Headers.ToDictionary(x => x.Key, x => x.Value.FirstOrDefault(), StringComparer.OrdinalIgnoreCase);
             var body = await value.Content.ReadAsStreamAsync();
 
-            return new(value.StatusCode, headers, body);
+            return new(value.StatusCode, headers!, body);
         }
     }
 }

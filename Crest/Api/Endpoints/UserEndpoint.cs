@@ -21,7 +21,7 @@ namespace Crest.Api.Endpoints
         {
             var result = await _manager.SendAsync(new(HttpMethod.Get, $"users/{id}"));
 
-            if (User.TryParse(this, await result.GetJsonAsync(), out var user))
+            if (Users.TryParse(this, await result.GetJsonAsync(), out var user))
                 return user;
             else
                 throw new InvalidOperationException();
