@@ -6,10 +6,25 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    public class UserCommand : Command
+    public record UserCommand : Command
     {
-        internal UserCommand(Models.Interaction model, string timestamp) : base(model, timestamp)
+        internal UserCommand(Models.Interaction model, Func<string, Task> callback, string timestamp) : base(model, callback, timestamp)
         {
+        }
+
+        public override Task DeferAsync(bool doEphemeral)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task FollowupAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task RespondAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

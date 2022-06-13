@@ -20,15 +20,27 @@ namespace Crest.Interactions.Models
         [JsonProperty("application_id")]
         public ulong AppId { get; set; }
 
+        /// <summary>
+        ///     Always present.
+        /// </summary>
         [JsonProperty("type")]
         public InteractionType Type { get; set; }
 
+        /// <summary>
+        ///     Always present.
+        /// </summary>
         [JsonProperty("data")]
         public InteractionData? Data { get; set; }
 
+        /// <summary>
+        ///     The ID of the guild.
+        /// </summary>
         [JsonProperty("guild_id")]
         public ulong? GuildId { get; set; }
 
+        /// <summary>
+        ///     The ID of the channel.
+        /// </summary>
         [JsonProperty("channel_id")]
         public ulong? ChannelId { get; set; }
 

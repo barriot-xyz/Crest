@@ -6,10 +6,25 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    public class ModalInteraction : Interaction
+    public record ModalInteraction : Interaction
     {
-        internal ModalInteraction(Models.Interaction model, string timestamp) : base(model, timestamp)
+        internal ModalInteraction(Models.Interaction model, Func<string, Task> callback, string timestamp) : base(model, callback, timestamp)
         {
+        }
+
+        public override Task DeferAsync(bool doEphemeral)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task FollowupAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task RespondAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

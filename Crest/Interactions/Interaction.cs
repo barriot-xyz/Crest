@@ -26,15 +26,27 @@ namespace Crest.Interactions
         ///     The exact time this interaction was executed on.
         /// </summary>
         public DateTimeOffset Timestamp { get; }
+        
+        /// <summary>
+        ///     The response token of this interaction.
+        /// </summary>
+        public string Token { get; }
 
-        internal Interaction(Models.Interaction model, string timestamp)
+        /// <summary>
+        ///     The callback to respond to this interaction.
+        /// </summary>
+        public Func<string, Task> Callback { get; }
+
+        internal Interaction(Models.Interaction model, Func<string, Task> callback, string timestamp)
         {
             Timestamp = SnowflakeConverter.ToTimestamp(timestamp);
             Id = model.Id;
             ApplicationId = model.AppId;
+            Token = model.Token;
+            Callback = callback;
         }
 
-        public static bool TryParse(string signature, string timestamp, string publicKey, byte[] body, out Interaction interaction)
+        public static bool TryParse(string signature, string timestamp, string publicKey, byte[] body, Func<string, Task> callback, out Interaction interaction)
         {
             // transform key and signature to bytes
             var key = HexConverter.HexToByteArray(publicKey);
@@ -59,19 +71,19 @@ namespace Crest.Interactions
 
                 interaction = model.Type switch
                 {
-                    InteractionType.Ping => new PingInteraction(model, timestamp),
-                    InteractionType.Modal => new ModalInteraction(model, timestamp),
-                    InteractionType.MessageComponent => new ComponentInteraction(model, timestamp),
-                    InteractionType.ApplicationCommand => Command.Parse(model, timestamp),
+                    InteractionType.Ping => new PingInteraction(model, callback, timestamp),
+                    InteractionType.Modal => new ModalInteraction(model, callback, timestamp),
+                    InteractionType.MessageComponent => new ComponentInteraction(model, callback, timestamp),
+                    InteractionType.ApplicationCommand => Command.Parse(model, callback, timestamp),
                     _ => throw new NotImplementedException()
                 };
             }
             return false;
         }
 
-        public static Interaction Parse(string signature, string timestamp, string publicKey, byte[] body)
+        public static Interaction Parse(string signature, string timestamp, string publicKey, byte[] body, Func<string, Task> callback)
         {
-            if (!TryParse(signature, timestamp, publicKey, body, out var interaction))
+            if (!TryParse(signature, timestamp, publicKey, body, callback, out var interaction))
                 throw new InvalidOperationException("Unable to parse http interaction.");
 
             return interaction;
@@ -79,5 +91,11 @@ namespace Crest.Interactions
 
         private static bool IsValidInteraction(byte[] signature, byte[] message, byte[] key)
             => Ed25519.Verify(signature, message, key);
+
+        public abstract Task DeferAsync(bool doEphemeral);
+
+        public abstract Task RespondAsync();
+
+        public abstract Task FollowupAsync();
     }
 }
