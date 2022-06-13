@@ -18,6 +18,8 @@
   <ItemGroup>
     <Folder Include="Messages\Properties\" />
     <Folder Include="Guilds\Properties\" />
+    <Folder Include="Roles\Properties\" />
+    <Folder Include="Threads\Properties\" />
     <Folder Include="Verification\" />
   </ItemGroup>
 

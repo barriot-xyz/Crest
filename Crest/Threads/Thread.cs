@@ -1,4 +1,4 @@
-﻿using Model = Crest.Api.Json.ThreadModel;
+﻿using Model = Crest.Api.Json.Thread;
 
 namespace Crest.Entities
 {

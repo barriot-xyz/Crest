@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Roles
+namespace Crest.Roles.Models
 {
-    public record Role : IEntity<ulong>
+    internal class Role
     {
-        public ulong Id { get; }
     }
 }

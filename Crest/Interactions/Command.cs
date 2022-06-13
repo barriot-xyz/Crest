@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    public class Command : Interaction
+    public record Command : Interaction
     {
         internal Command(Models.Interaction model, string timestamp) : base(model, timestamp)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crest.Api.Json
 {
-    internal class ChannelModel
+    internal class Thread
     {
         [JsonProperty("snowflake")]
         public ulong Id { get; init; }

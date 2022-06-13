@@ -10,7 +10,7 @@ using Crest.Interactions.Properties.Commands;
 
 namespace Crest.Interactions
 {
-    public abstract class Interaction : IEntity<ulong>
+    public abstract record Interaction : IEntity<ulong>
     {
         /// <summary>
         ///     The ID of this interaction.
@@ -52,10 +52,7 @@ namespace Crest.Interactions
 
             if (IsValidInteraction(sig, msg.ToArray(), key))
             {
-                using var textReader = new StringReader(Encoding.UTF8.GetString(body));
-                using var jsonReader = new JsonTextReader(textReader);
-
-                var model = CrestConfiguration.Serializer.Deserialize<Models.Interaction>(jsonReader);
+                var model = ModelConverter.FromJson<Models.Interaction>(Encoding.UTF8.GetString(body));
 
                 if (model is null)
                     return false;
@@ -64,6 +61,7 @@ namespace Crest.Interactions
                 {
                     InteractionType.Ping => new PingInteraction(model, timestamp),
                     InteractionType.Modal => new ModalInteraction(model, timestamp),
+                    InteractionType.MessageComponent => new ComponentInteraction(model, timestamp),
                     InteractionType.ApplicationCommand => Command.Parse(model, timestamp),
                     _ => throw new NotImplementedException()
                 };

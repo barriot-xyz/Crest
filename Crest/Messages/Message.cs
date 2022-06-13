@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crest.Messages
 {
-    internal class Message : IEntity<ulong>
+    public record Message : IEntity<ulong>
     {
         public ulong Id { get; set; }
     }

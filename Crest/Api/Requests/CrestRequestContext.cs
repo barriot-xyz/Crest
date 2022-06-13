@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Crest.Api.Requests
 {
-    internal struct CrestRequestContext
+    internal readonly struct CrestRequestContext
     {
         public HttpMethod HttpMethod { get; }
 

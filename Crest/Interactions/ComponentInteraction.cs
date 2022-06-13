@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Crest.Interactions
 {
-    public class Component : Interaction
+    public class ComponentInteraction : Interaction
     {
-        internal Component(Models.Interaction model, string timestamp) : base(model, timestamp)
+        internal ComponentInteraction(Models.Interaction model, string timestamp) : base(model, timestamp)
         {
         }
     }

@@ -1,6 +1,4 @@
-﻿using Model = Crest.Api.Json.ChannelModel;
-
-namespace Crest.Entities
+﻿namespace Crest.Channels
 {
     public record Channel : IEntity<ulong>
     {
@@ -8,14 +6,14 @@ namespace Crest.Entities
 
         public string Name { get; }
 
-        internal Channel(Model model) 
+        internal Channel(Models.Channel model) 
         {
             Id = model.Id;
         }
 
         public static bool TryParse(string json, out Channel entity)
         {
-            var model = JsonConvert.DeserializeObject<Model>(json);
+            var model = JsonConvert.DeserializeObject<Models.Channel>(json);
 
             if (model is not null)
             {

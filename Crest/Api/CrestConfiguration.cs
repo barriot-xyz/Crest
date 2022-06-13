@@ -17,7 +17,11 @@ namespace Crest
         internal readonly AuthorizationType AuthorizationType;
         #endregion
 
-        public static JsonSerializer Serializer { get; private set; } = new JsonSerializer() { NullValueHandling = NullValueHandling.Ignore };
+        public static JsonSerializer Serializer { get; private set; } = new() 
+        { 
+            NullValueHandling = NullValueHandling.Ignore, 
+            Formatting = Formatting.Indented 
+        };
 
         public string UserAgent { get; }
 

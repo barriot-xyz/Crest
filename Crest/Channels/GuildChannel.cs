@@ -1,17 +1,15 @@
-﻿using Model = Crest.Api.Json.ChannelModel;
-
-namespace Crest.Entities
+﻿namespace Crest.Channels
 {
     public record GuildChannel : Channel
     {
-        internal GuildChannel(Model model) : base(model)
+        internal GuildChannel(Models.Channel model) : base(model)
         {
             
         }
 
         public static bool TryParse(string json, out GuildChannel entity)
         {
-            var model = JsonConvert.DeserializeObject<Model>(json);
+            var model = JsonConvert.DeserializeObject<Models.Channel>(json);
 
             if (model is not null)
             {

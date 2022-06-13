@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Api.Json
+namespace Crest.Channels.Models
 {
-    internal class ThreadModel
+    internal class Channel
     {
         [JsonProperty("snowflake")]
         public ulong Id { get; init; }
