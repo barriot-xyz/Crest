@@ -15,12 +15,4 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Messages\Properties\" />
-    <Folder Include="Guilds\Properties\" />
-    <Folder Include="Roles\Properties\" />
-    <Folder Include="Threads\Properties\" />
-    <Folder Include="Verification\" />
-  </ItemGroup>
-
 </Project>

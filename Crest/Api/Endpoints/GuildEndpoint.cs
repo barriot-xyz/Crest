@@ -1,5 +1,7 @@
 ﻿using Crest.Api.Requests;
 using Crest.Entities;
+using Crest.Guilds;
+using Crest.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
