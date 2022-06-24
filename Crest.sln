@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crest.Builders", "Builders\Crest.Builders\Crest.Builders.csproj", "{04E5B084-5BEB-425A-A85C-E92EBAF2433D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crest.Builders", "Crest.Builders\Crest.Builders.csproj", "{04E5B084-5BEB-425A-A85C-E92EBAF2433D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crest.Core", "Core\Crest.Core\Crest.Core.csproj", "{5DB3758D-E80D-4B76-B86A-D1B440AA5F46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crest.Core", "Crest.Core\Crest.Core.csproj", "{5DB3758D-E80D-4B76-B86A-D1B440AA5F46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crest.Entities", "Entities\Crest.Entities\Crest.Entities.csproj", "{BA823324-7C14-49E8-9BE3-4F2A2A3B6C42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crest.Entities", "Crest.Entities\Crest.Entities.csproj", "{BA823324-7C14-49E8-9BE3-4F2A2A3B6C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
