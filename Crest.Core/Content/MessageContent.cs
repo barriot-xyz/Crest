@@ -25,5 +25,15 @@ namespace Crest
         ///     The mentioning permissions of this message.
         /// </summary>
         public AllowedMentions? AllowedMentions { get; set; }
+
+        /// <summary>
+        ///     The range of embeds to use for this message.
+        /// </summary>
+        public Embed[]? Embeds { get; set; }
+
+        /// <summary>
+        ///     The range of components to attach to this message.
+        /// </summary>
+        public Components? Components { get; set; }
     }
 }

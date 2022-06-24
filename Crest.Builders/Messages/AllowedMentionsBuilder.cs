@@ -9,14 +9,14 @@ namespace Crest.Builders
     /// <summary>
     ///     Represents a builder for <see cref="AllowedMentions"/> for messages.
     /// </summary>
-    public class MentionBuilder : IBuilder<AllowedMentions>
+    public class AllowedMentionsBuilder : IBuilder<AllowedMentions>
     {
         private bool _canMentionInReply;
         private MentionType[] _types;
         private List<ulong> _allowedUsers;
         private List<ulong> _allowedRoles;
 
-        public MentionBuilder()
+        public AllowedMentionsBuilder()
         {
             _canMentionInReply = false;
             _types = Array.Empty<MentionType>();
@@ -29,7 +29,7 @@ namespace Crest.Builders
         /// </summary>
         /// <param name="types"></param>
         /// <returns></returns>
-        public MentionBuilder WithAllowedTypes(params MentionType[] types)
+        public AllowedMentionsBuilder WithAllowedTypes(params MentionType[] types)
         {
             _types = types;
             return this;
@@ -40,7 +40,7 @@ namespace Crest.Builders
         /// </summary>
         /// <param name="allowMentionInReply"></param>
         /// <returns></returns>
-        public MentionBuilder WithAllowReply(bool allowMentionInReply)
+        public AllowedMentionsBuilder WithAllowReply(bool allowMentionInReply)
         {
             _canMentionInReply = allowMentionInReply;
             return this;
@@ -51,7 +51,7 @@ namespace Crest.Builders
         /// </summary>
         /// <param name="userIds"></param>
         /// <returns></returns>
-        public MentionBuilder WithUsers(params ulong[] userIds)
+        public AllowedMentionsBuilder WithUsers(params ulong[] userIds)
         {
             _allowedUsers = userIds.ToList();
             return this;
@@ -62,7 +62,7 @@ namespace Crest.Builders
         /// </summary>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        public MentionBuilder WithRoles(params ulong[] roleIds)
+        public AllowedMentionsBuilder WithRoles(params ulong[] roleIds)
         {
             _allowedRoles = roleIds.ToList();
             return this;
@@ -73,7 +73,7 @@ namespace Crest.Builders
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public MentionBuilder AddUser(ulong userId)
+        public AllowedMentionsBuilder AddUser(ulong userId)
         {
             _allowedUsers.Add(userId);
             return this;
@@ -84,7 +84,7 @@ namespace Crest.Builders
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public MentionBuilder AddRole(ulong roleId)
+        public AllowedMentionsBuilder AddRole(ulong roleId)
         {
             _allowedRoles.Add(roleId);
             return this;

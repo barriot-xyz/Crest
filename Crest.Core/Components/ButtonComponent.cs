@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Crest.Builders
+namespace Crest
 {
-    internal class ComponentBuilder
+    public class ButtonComponent
     {
     }
 }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Crest.Builders
 {
-    internal class CommandBuilder
+    public class TextBuilder : IBuilder<string>
     {
+        public string Build()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
